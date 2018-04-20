@@ -1,0 +1,42 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box
+}
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+.page {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+
+
+.disc-container {
+	background-color: #eee;
+}
+.disc-container .pointer {
+	width: 155px;
+}
+.disc-container .circle {
+	width: 330px;
+}
+.disc-container .circle-light {
+	width: 330px;
+}
+.disc-container .ablum-cover {
+	width: 330px;
+}
+
+.song-description {
+
+}
+
+
+.page > .links {
+
+}

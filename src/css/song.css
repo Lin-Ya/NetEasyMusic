@@ -20,16 +20,16 @@
 	background-color: rgb(192, 165, 165);
 }
 .disc-container .pointer {
-	width: 155px;
+	width: 24vw;
 }
 .disc-container .circle {
-	width: 330px;
+	width: 72vw;
 }
 .disc-container .circle-light {
-	width: 330px;
+	width: 72vw;
 }
 .disc-container .ablum-cover {
-	width: 330px;
+	width: 72vw;
 }
 
 .song-description {

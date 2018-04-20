@@ -39,9 +39,9 @@ gulp.task('js', function (argument) {
 });
 
 gulp.task('img', function (argument) {
-    gulp.src('src/imgs/*')
+    gulp.src('src/img/*')
         .pipe(imagemin())
-        .pipe(gulp.dest('dist/imgs'));
+        .pipe(gulp.dest('dist/img'));
 });
 
 gulp.task('clear', function () {

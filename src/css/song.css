@@ -8,28 +8,57 @@
 	box-sizing: border-box;
 }
 
+/* 选择动画，circle；时间；无限循环；线性变化 */
+@keyframes circle{
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
 .page {
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+	background-image:url("../img/background.png");
+	background-size: cover;
+	background-position: center;
 }
 
 
 
 .disc-container {
-	background-color: rgb(192, 165, 165);
+	position: relative;
 }
 .disc-container .pointer {
 	width: 24vw;
+	position: absolute;
+	left: 45vw;
+	z-index: 1;
 }
+.disc-container .disc {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-top: 17vw;
+}
+
 .disc-container .circle {
 	width: 72vw;
 }
 .disc-container .circle-light {
 	width: 72vw;
+	animation: circle 20s infinite linear;
+	position: absolute;
 }
-.disc-container .ablum-cover {
-	width: 72vw;
+.disc-container .album-cover {
+	width: 45vw;
+	position: absolute;
+	border-radius: 50%;
+	animation: circle 20s infinite linear;
 }
 
 .song-description {

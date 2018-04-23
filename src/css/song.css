@@ -3,13 +3,15 @@
 	padding: 0;
 	box-sizing: border-box
 }
+
 *::before,
 *::after {
 	box-sizing: border-box;
 }
 
 /* 选择动画，circle；时间；无限循环；线性变化 */
-@keyframes circle{
+
+@keyframes circle {
 	0% {
 		transform: rotate(0deg);
 	}
@@ -22,22 +24,22 @@
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
-	background-image:url("../img/background.png");
+	background-image: url("../img/background.png");
 	background-size: cover;
 	background-position: center;
 }
 
-
-
 .disc-container {
 	position: relative;
 }
+
 .disc-container .pointer {
 	width: 24vw;
 	position: absolute;
 	left: 45vw;
 	z-index: 1;
 }
+
 .disc-container .disc {
 	display: flex;
 	flex-direction: row;
@@ -49,11 +51,13 @@
 .disc-container .circle {
 	width: 72vw;
 }
+
 .disc-container .circle-light {
 	width: 72vw;
 	animation: circle 20s infinite linear;
 	position: absolute;
 }
+
 .disc-container .album-cover {
 	width: 45vw;
 	position: absolute;
@@ -62,10 +66,14 @@
 }
 
 .song-description {
-
+	text-align: center;
+	color: #ada9a9;
+}
+.song-description .lyric {
+	font-size: 12px;
+}
+.song-description h2 {
+	font-size: 16px;
 }
 
-
-.page > .links {
-
-}
+.page>.links {}

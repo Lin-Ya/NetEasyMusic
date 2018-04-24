@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #D83A36;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 17vw;
+    font-size: 4vw;
+}
+header .toplogo {
+    width: 37.8vw;
+}
+header .downloadApp {
+    line-height: 8vw;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #fff;
+    padding: 0 0.6em;
+    border-radius: 4vw;
+}
+nav {
+    border-bottom: 1px solid #E8E8E8;
+}
+nav ol {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+nav ol li{
+    flex: 1;
+    text-align: center;
+}
+nav ol li span{
+    position: relative;
+    display: inline-flex;
+    line-height: 10.5vw;
+    font-size: 4vw;
+}
+nav ol li span.active {
+    color: #D83A36;
+}
+nav ol li span.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    border: 1px solid #D83A36;
+    left: -1vw;
+    right: -1vw;
+}
+
+section {
+    padding-top: 20px;
+}

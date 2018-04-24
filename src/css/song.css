@@ -28,21 +28,26 @@
 	background-size: cover;
 	background-position: center;
 }
+
 .page.playing .disc .circle-light,
 .page.playing .disc .album-cover {
-	animation: circle 20s infinite linear;	
+	animation: circle 20s infinite linear;
 }
+
 .disc-container {
 	position: relative;
 }
+
 .page.page .disc-container .play-btn {
 	position: absolute;
 	width: 18vw;
 	z-index: 1;
 }
-.page.page.playing .disc-container .play-btn{
+
+.page.page.playing .disc-container .play-btn {
 	display: none;
 }
+
 .disc-container .pointer {
 	width: 24vw;
 	position: absolute;
@@ -79,18 +84,22 @@
 	margin-top: 8vw;
 	flex-grow: 1;
 }
+
 .song-description .lyric {
 	margin-top: 2vw;
 	font-size: 16px;
 	height: 120px;
 	overflow: hidden;
 }
-.song-description .lyric .lines{
+
+.song-description .lyric .lines {
 	transform: translateY(-0px);
 }
+
 .song-description .lyric p {
 	line-height: 24px;
 }
+
 .song-description .lyric p.active {
 	color: #fff;
 }
@@ -106,6 +115,7 @@
 	align-items: center;
 	margin-bottom: 2vw;
 }
+
 .page>.links a {
 	margin: 1vw;
 	width: 47vw;
@@ -117,6 +127,8 @@
 	border: 1px solid #d73835;
 	letter-spacing: 1vw;
 }
+
 .page>.links a.main {
 	background-color: #d73835;
 	color: white;
+}

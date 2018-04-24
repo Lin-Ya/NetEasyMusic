@@ -35,7 +35,14 @@
 .disc-container {
 	position: relative;
 }
-
+.page.page .disc-container .play-btn {
+	position: absolute;
+	width: 18vw;
+	z-index: 1;
+}
+.page.page.playing .disc-container .play-btn{
+	display: none;
+}
 .disc-container .pointer {
 	width: 24vw;
 	position: absolute;

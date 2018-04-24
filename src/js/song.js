@@ -47,7 +47,7 @@ $(function () {
 			let id = music_data.id
 			audio.src = url;
 			audio.oncanplay = function () {
-				audio.play();
+				// audio.play();
 				$('.page').addClass('playing')
 			}
 		}

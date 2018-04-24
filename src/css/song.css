@@ -68,12 +68,24 @@
 .song-description {
 	text-align: center;
 	color: #ada9a9;
+	margin-top: 8vw;
 }
 .song-description .lyric {
-	font-size: 12px;
-}
-.song-description h2 {
 	font-size: 16px;
+	border: 1px solid red;
+	height: 120px;
+	overflow: hidden;
+}
+.song-description .lyric p {
+	line-height: 24px;
+}
+.song-description .lyric p.active {
+	color: #fff;
+}
+
+.song-description h2 {
+	font-size: 19px;
+	color: #fff;
 }
 
 .page>.links {}

@@ -28,7 +28,10 @@
 	background-size: cover;
 	background-position: center;
 }
-
+.page.playing .disc .circle-light,
+.page.playing .disc .album-cover {
+	animation: circle 20s infinite linear;	
+}
 .disc-container {
 	position: relative;
 }
@@ -54,7 +57,6 @@
 
 .disc-container .circle-light {
 	width: 72vw;
-	animation: circle 20s infinite linear;
 	position: absolute;
 }
 
@@ -62,19 +64,22 @@
 	width: 45vw;
 	position: absolute;
 	border-radius: 50%;
-	animation: circle 20s infinite linear;
 }
 
 .song-description {
 	text-align: center;
 	color: #ada9a9;
 	margin-top: 8vw;
+	flex-grow: 1;
 }
 .song-description .lyric {
 	font-size: 16px;
 	border: 1px solid red;
 	height: 120px;
 	overflow: hidden;
+}
+.song-description .lyric .lines{
+	transform: translateY(-0px);
 }
 .song-description .lyric p {
 	line-height: 24px;
@@ -88,4 +93,23 @@
 	color: #fff;
 }
 
-.page>.links {}
+.page>.links {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 2vw;
+}
+.page>.links a {
+	margin: 1vw;
+	width: 47vw;
+	text-align: center;
+	padding: 2vw;
+	color: #d73835;
+	border-radius: 5vw;
+	text-decoration: none;
+	border: 1px solid #d73835;
+	letter-spacing: 1vw;
+}
+.page>.links a.main {
+	background-color: #d73835;
+	color: white;

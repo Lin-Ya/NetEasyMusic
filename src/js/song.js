@@ -41,29 +41,37 @@ $(function () {
 	//获取歌曲url
 	$.get('../url.json').then(function (res) {
 		console.log(res)
-		let audio = document.createElement('audio')
-		function handle(music_data) {
-			let url = music_data.url
-			let id = music_data.id
-			audio.src = url;
-			audio.oncanplay = function () {
-				// audio.play();
-				$('.page').addClass('playing')
-			}
-		}
 		if(res.code === 200){
 			let data = res.data[0]
-			handle(data)
+			playmusic(data)
 		}else {
 			console.log(res.code)
 			console.log('error')
 		}
+	})
+	let audio = document.createElement('audio')
+	function playmusic(music_data) {
+		let url = music_data.url
+		let id = music_data.id
+		audio.src = url;
+		audio.oncanplay = function () {
+			audio.play();
+			$('.page').addClass('playing')
+		}
+		//播放暂停按钮
 		$('.disc').on('click', function () {
-			console.log(1)
+			console.log('暂停了')
 			audio.pause();
 			$('.page').removeClass('playing')
 		})
+		$('.play-btn').on('click', function () {
+			event.stopPropagation();
+			console.log('播放了')		
+			audio.play();
+			$('.page').addClass('playing')		
+		})
+	}
+
 
 		
-	})
 })

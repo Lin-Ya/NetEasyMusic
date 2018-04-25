@@ -127,14 +127,22 @@ nav ol li span.active::after {
     line-height: 4vw;
 }
 
+.remd .remd-songlist .loadingGif{
+    text-align: center;
+}
 .remd .remd-songlist li {
     margin-left: 2vw;
     border-bottom: 1px solid #eee;
-    position: relative;
     margin-bottom: 2vw;
 }
+.remd .remd-songlist a{
+    color: inherit;
+    position: relative;
+    text-decoration: none;
+    display: block;
+}
 
-.remd .remd-songlist li .songName {
+.remd .remd-songlist li a .songName {
     font-size: 4.5vw;
     line-height: 6.6vw;
     margin-bottom: 0.7vw;
@@ -142,23 +150,23 @@ nav ol li span.active::after {
     letter-spacing: 1px;
 }
 
-.remd .remd-songlist li .songInfo {
+.remd .remd-songlist li a .songInfo {
     font-size: 3.2vw;
     display: flex;
     align-items: center;
 }
 
-.remd .remd-songlist li .SQ {
+.remd .remd-songlist li a .SQ {
     left: 0;
     bottom: 0;
     margin-right: 4px;
 }
 
-.remd .remd-songlist li .songAutor {
+.remd .remd-songlist li a .songAutor {
     color: #888;
 }
 
-.remd .remd-songlist a svg {
+.remd .remd-songlist a svg.playbtn {
     fill: #888;
     position: absolute;
     margin: 0 2vw;

@@ -1,8 +1,16 @@
 $(function () {
+	let id =parseInt(location.search.match(/\bid=([^&]*)/)[1])
+	$.get('../newsong.json').then(function (res) {
+		let songs = res;
+		let song = songs.filter( (s)=> s.id === id )[0]
+		playmusic(song)
+	})
+
+
 	//获取歌词
 	$.get('../lyric.json').then(function (obj) {
 		// console.log(obj)
-		let {lyric} = obj.lrc; //等同于let a = obj.a 
+		let { lyric } = obj.lrc; //等同于let a = obj.a 
 		let array = lyric.split('\n'); //根据回车分割行政数组。
 		let regex = /^\[(.+)\](.*)$/; //正则，匹配中括号内的时间和中括号后的歌词内容
 
@@ -39,16 +47,16 @@ $(function () {
 	})
 
 	//获取歌曲url
-	$.get('../url.json').then(function (res) {
-		console.log(res)
-		if(res.code === 200){
-			let data = res.data[0]
-			playmusic(data)
-		}else {
-			console.log(res.code)
-			console.log('error')
-		}
-	})
+	// $.get('../url.json').then(function (res) {
+	// 	console.log(res)
+	// 	if (res.code === 200) {
+	// 		let data = res.data[0]
+	// 		playmusic(data)
+	// 	} else {
+	// 		console.log(res.code)
+	// 		console.log('error')
+	// 	}
+	// })
 	let audio = document.createElement('audio')
 	function playmusic(music_data) {
 		let url = music_data.url
@@ -66,12 +74,12 @@ $(function () {
 		})
 		$('.play-btn').on('click', function () {
 			event.stopPropagation();
-			console.log('播放了')		
+			console.log('播放了')
 			audio.play();
-			$('.page').addClass('playing')		
+			$('.page').addClass('playing')
 		})
 	}
 
 
-		
+
 })

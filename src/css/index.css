@@ -127,13 +127,13 @@ nav ol li span.active::after {
     line-height: 4vw;
 }
 
-
 .remd .remd-songlist li {
     margin-left: 2vw;
     border-bottom: 1px solid #eee;
     position: relative;
     margin-bottom: 2vw;
 }
+
 .remd .remd-songlist li .songName {
     font-size: 4.5vw;
     line-height: 6.6vw;
@@ -141,20 +141,24 @@ nav ol li span.active::after {
     font-weight: normal;
     letter-spacing: 1px;
 }
+
 .remd .remd-songlist li .songInfo {
     font-size: 3.2vw;
     display: flex;
     align-items: center;
 }
+
 .remd .remd-songlist li .SQ {
     left: 0;
     bottom: 0;
     margin-right: 4px;
 }
+
 .remd .remd-songlist li .songAutor {
     color: #888;
 }
-.remd .remd-songlist a svg{
+
+.remd .remd-songlist a svg {
     fill: #888;
     position: absolute;
     margin: 0 2vw;
@@ -163,4 +167,34 @@ nav ol li span.active::after {
     transform: translateY(-50%);
     width: 5.8vw;
     height: 5.8vw;
+}
+
+footer .art {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('../img/footer-background.png') no-repeat;
+}
+
+footer .art .bottomlogo {
+    width: 61.3vw;
+    height: 11.7vw;
+    margin-top: 16.9%;
+}
+
+footer .art .openApp {
+    text-decoration: none;
+    border: 1px solid #D83A36;
+    font-size: 4.3vw;
+    margin-top: 6vw;
+    padding: 2vw 12.5vw;
+    letter-spacing: 1px;
+    border-radius: 100px;
+    color: #D83A36;
+}
+
+footer .art .copyright {
+    font-size: 1vw;
+    margin-top: 1vw;
+    margin-bottom: 2.6vw;
 }

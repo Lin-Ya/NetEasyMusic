@@ -173,7 +173,9 @@ footer .art {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: url('../img/footer-background.png') no-repeat;
+    padding-bottom: 4vw;
+    background: url('../img/footer-background.png')  no-repeat;
+    background-size: contain;
 }
 
 footer .art .bottomlogo {
@@ -186,7 +188,7 @@ footer .art .openApp {
     text-decoration: none;
     border: 1px solid #D83A36;
     font-size: 4.3vw;
-    margin-top: 6vw;
+    margin-top: 4.8vw;
     padding: 2vw 12.5vw;
     letter-spacing: 1px;
     border-radius: 100px;
@@ -196,5 +198,6 @@ footer .art .openApp {
 footer .art .copyright {
     font-size: 1vw;
     margin-top: 1vw;
-    margin-bottom: 2.6vw;
+    transform: scale(0.75);
+    color: #888;
 }

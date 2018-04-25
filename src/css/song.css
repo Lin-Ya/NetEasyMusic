@@ -33,6 +33,12 @@
 .page.playing .disc .album-cover {
 	animation: circle 20s infinite linear;
 }
+.page.paused .disc .circle-light,
+.page.paused .disc .album-cover {
+	animation: circle 20s infinite linear;
+	animation-play-state: paused;
+}
+
 
 .disc-container {
 	position: relative;

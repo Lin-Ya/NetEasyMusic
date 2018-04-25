@@ -70,13 +70,13 @@ $(function () {
 		$('.disc').on('click', function () {
 			console.log('暂停了')
 			audio.pause();
-			$('.page').removeClass('playing')
+			$('.page').removeClass('playing').addClass('paused')
 		})
 		$('.play-btn').on('click', function () {
 			event.stopPropagation();
 			console.log('播放了')
 			audio.play();
-			$('.page').addClass('playing')
+			$('.page').removeClass('paused').addClass('playing')
 		})
 	}
 

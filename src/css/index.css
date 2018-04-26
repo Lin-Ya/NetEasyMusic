@@ -76,7 +76,10 @@ nav ol li span.active::after {
 .remd {
     padding-top: 20px;
 }
-
+.remd .loadingGif {
+    text-align: center;
+    width: 100%;
+}
 .remd .title {
     font-size: 4.5vw;
     line-height: 4.5vw;
@@ -91,6 +94,11 @@ nav ol li span.active::after {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+.remd .remd-ol a{
+    color: inherit;
+    text-decoration: none;
+    display: block;
 }
 
 .remd .remd-ol li {
@@ -127,9 +135,7 @@ nav ol li span.active::after {
     line-height: 4vw;
 }
 
-.remd .remd-songlist .loadingGif{
-    text-align: center;
-}
+
 .remd .remd-songlist li {
     margin-left: 2vw;
     border-bottom: 1px solid #eee;

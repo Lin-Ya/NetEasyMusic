@@ -24,20 +24,6 @@
     margin-left: -4vw;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .hot .bang_list a{
     display: flex;
     flex-direction: row;
@@ -59,11 +45,11 @@
 
 .hot footer {
     margin: 20px auto;
+    text-align: center;
 }
 
 .hot footer a {
     color: #999;
-    justify-content: center;
 }
 .hot footer a::after {
     content: '>';

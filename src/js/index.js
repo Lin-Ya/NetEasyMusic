@@ -74,8 +74,9 @@ $(function () {
         log(result)
         result.map(function (obj,index) {
             let number = (index+1).toString();
-            debugger
-            //todo，根据number添加到歌曲系列中作为排名，如果是插入到首页的话，记得给CSS添加样式为display：none；
+            if(number.length ===1){
+                number = '0'+ number;
+            }
             let song,id,artists,album,singer,name;
             if(obj.song){
                 song = obj.song
@@ -91,12 +92,6 @@ $(function () {
                 singer = "";
                 name = obj.name;
             }
-            // let song = obj.song || obj;
-            // let id = song.id||obj.id;
-            // let artists = song.artists||obj.ar;
-            // let album = song.album.name || obj.al.name;
-            // let singer = "";
-            // let name = song.name || obj.name;
             if (artists.length > 1) {
                 artists.map((s) => {
                     singer += (s.name + ' / ')
@@ -109,19 +104,25 @@ $(function () {
             let $li = $(`
                 <li>
                     <a href="/song.html?id=${id}" class="goplaysong">
-                        <h3 class="songName">${name}</h3>
-                        <div class="songInfo">
-                            <svg class="icon SQ" aria-hidden="true">
-                            <use xlink: href="#icon-wusunyinzhi"></use>
-                            </svg>
-                            <span class="songAutor">${singer} - ${album}</span>
+                        <div class="index">${number}</div>
+						<div class="song">
+                            <h3 class="songName">${name}</h3>
+                            <div class="songInfo">
+                                <svg class="icon SQ" aria-hidden="true">
+                                <use xlink: href="#icon-wusunyinzhi"></use>
+                                </svg>
+                                <span class="songAutor">${singer} - ${album}</span>
+                            </div>
+                            <svg class="icon playbtn" aria-hidden="true">
+                                <use xlink: href="#icon-play-circled"></use>
+                            </svg >
                         </div>
-                        <svg class="icon playbtn" aria-hidden="true">
-                            <use xlink: href="#icon-play-circled"></use>
-                        </svg >
-                    </a >
+                    </a>
                 </li >
             `);
+            if(Number(number)<4){
+                $li.find('.index').css('color', '#D83A36')
+            }
             $li.appendTo($target);
             $('.loadingGif').remove();
         })

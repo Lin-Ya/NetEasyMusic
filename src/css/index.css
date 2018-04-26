@@ -149,7 +149,9 @@ nav ol li.active span::after {
     font-size: 3.2vw;
     line-height: 4vw;
 }
-
+.remd .remd-songlist a .index {
+    display: none;
+}
 
 .remd-songlist li {
     margin-left: 2vw;
@@ -184,7 +186,13 @@ nav ol li.active span::after {
 }
 
 .remd-songlist li a .songAutor {
+    width: 50vw;
     color: #888;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .remd-songlist a svg.playbtn {

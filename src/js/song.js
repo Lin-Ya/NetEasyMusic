@@ -1,26 +1,82 @@
 $(function () {
-	let id =parseInt(location.search.match(/\bid=([^&]*)/)[1])
-	$.get('../newsong.json').then(function (res) {
-		let songs = res;
-		let song = songs.filter( (s)=> s.id === id )[0]
-		playmusic(song)
+	function log(s) {
+		return console.log(s)
+	}
+	let songId =parseInt(location.search.match(/\bid=([^&]*)/)[1])
+	let audio = document.createElement('audio')
+	
+
+	//获取歌曲详情
+	$.get('//localhost:4000/song/detail?ids=' + songId).then(function (res) {
+		if (res.code != 200) {
+			alert('网络异常，无法获取歌曲详情，请检查网络')
+		} else {
+			let songs = res.songs[0]
+			setInfo(songs)
+		}
 	})
 
+	//发送请求获取歌曲，并播放歌曲
+	let getsong = $.get('//localhost:4000/music/url?id=' + songId).then(function (res) {
+		if(res.code != 200){
+			alert('网络异常，无法获取歌曲，请检查网络')
+		}else {
+			let song = res.data[0]
+			playmusic(song)
+		}
+	})
 
 	//获取歌词
-	$.get('../lyric.json').then(function (obj) {
+	$.get('//localhost:4000/lyric?id=' + songId).then(function (obj) {
+		setLrc(obj)
+	})
+
+	
+
+
+	function playmusic(music_data) {
+		let url = music_data.url
+		let id = music_data.id
+		audio.src = url;
+		audio.oncanplay = function () {
+			audio.play();
+			$('.page').addClass('playing')
+		}
+		//播放暂停按钮
+		$('.disc').on('click', function () {
+			console.log('暂停了')
+			audio.pause();
+			$('.page').removeClass('playing').addClass('paused')
+		})
+		$('.play-btn').on('click', function () {
+			event.stopPropagation();
+			console.log('播放了')
+			audio.play();
+			$('.page').removeClass('paused').addClass('playing')
+		})
+	}
+	function setInfo(songs) {
+		log(songs)
+		let name = songs.name;
+		let singer = "";
+		if (songs.ar.length > 1) {
+			songs.ar.map((s) => {
+				singer += (s.name + ' / ')
+			})
+			let length = singer.length - 2;
+			singer = singer.toString().substring(0, length)
+		} else {
+			singer = songs.ar[0].name;
+		}
+		$('.song-description>h2').text(name + '-' + singer)
+		$('.album-cover').attr('src', songs.al.picUrl)
+		$('.background').css('background-image', `url(${songs.al.picUrl})`)
+	}
+	function setLrc(obj) {
 		// console.log(obj)
 		let { lyric } = obj.lrc; //等同于let a = obj.a 
 		let array = lyric.split('\n'); //根据回车分割行政数组。
 		let regex = /^\[(.+)\](.*)$/; //正则，匹配中括号内的时间和中括号后的歌词内容
-
-		//如果有翻译歌词，下面就会将翻译歌词和原歌词进行交叉合拼
-		// if (obj.tlyric) {
-		// 	let tlyric = obj.tlyric.lyric;
-		// 	let array2 = tlyric.split('\n');
-		// 	console.log(array)
-		// 	console.log(array2)
-		// }
 
 		//创建歌词数组，每一项都是一段歌词对象，key为time和word
 		let lrc_array = array.map(function (string) {
@@ -43,43 +99,6 @@ $(function () {
 				$p.appendTo($lyric.children('.lines'))
 			}
 		})
-
-	})
-
-	//获取歌曲url
-	// $.get('../url.json').then(function (res) {
-	// 	console.log(res)
-	// 	if (res.code === 200) {
-	// 		let data = res.data[0]
-	// 		playmusic(data)
-	// 	} else {
-	// 		console.log(res.code)
-	// 		console.log('error')
-	// 	}
-	// })
-	let audio = document.createElement('audio')
-	function playmusic(music_data) {
-		let url = music_data.url
-		let id = music_data.id
-		audio.src = url;
-		audio.oncanplay = function () {
-			audio.play();
-			$('.page').addClass('playing')
-		}
-		//播放暂停按钮
-		$('.disc').on('click', function () {
-			console.log('暂停了')
-			audio.pause();
-			$('.page').removeClass('playing').addClass('paused')
-		})
-		$('.play-btn').on('click', function () {
-			event.stopPropagation();
-			console.log('播放了')
-			audio.play();
-			$('.page').removeClass('paused').addClass('playing')
-		})
 	}
-
-
-
+	
 })

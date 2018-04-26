@@ -24,9 +24,25 @@
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
-	background-image: url("../img/background.png");
+	background: rgba(0, 0, 0, 0.5);
+}
+
+
+.background {
+	background-image: url("../img/disc_default.png");
 	background-size: cover;
 	background-position: center;
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-filter: blur(15px);
+	-moz-filter: blur(15px);
+	-o-filter: blur(15px);
+	-ms-filter: blur(15px);
+	filter: blur(15px);
+	z-index: -1;
 }
 
 .page.playing .disc .circle-light,

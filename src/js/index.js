@@ -13,7 +13,7 @@ $(function () {
     // 获取最新音乐
     $.get('../get/newsong.json').then(function (res) {
         if (res.code === 200) {
-            loadNewsong(res.result,$('.remd .remd-songlist'));
+            // loadNewsong(res.result,$('.remd .remd-songlist'));
         } else {
             alert('网络异常，无法获取数据，请调试网络环境')
         }
@@ -30,10 +30,8 @@ $(function () {
 
     //获取热歌榜
     $.get('../get/hotsong.json').then(function (res) {
-        
         if (res.code === 200) {
-            log(res)
-            loadHotsong(res.playlist)
+            loadHotsong(res)
         } else {
             alert('网络异常，无法获取数据，请调试网络环境')
         }
@@ -72,11 +70,32 @@ $(function () {
     }
 
     function loadNewsong(result,$target) {
-        result.map(function (obj) {
-            let song = obj.song;
-            let artists = song.artists||song.ar;
-            let album = song.album.name || song.al.name;
-            let singer = "";
+        log('================')
+        log(result)
+        result.map(function (obj,index) {
+            let number = (index+1).toString();
+            debugger
+            let song,id,artists,album,singer,name;
+            if(obj.song){
+                song = obj.song
+                id = song.id
+                artists = song.artists
+                album = song.album.name
+                singer = "";
+                name = song.name
+            }else {
+                id = obj.id;
+                artists = obj.ar;
+                album = obj.al.name;
+                singer = "";
+                name = obj.name;
+            }
+            // let song = obj.song || obj;
+            // let id = song.id||obj.id;
+            // let artists = song.artists||obj.ar;
+            // let album = song.album.name || obj.al.name;
+            // let singer = "";
+            // let name = song.name || obj.name;
             if (artists.length > 1) {
                 artists.map((s) => {
                     singer += (s.name + ' / ')
@@ -88,8 +107,8 @@ $(function () {
             }
             let $li = $(`
                 <li>
-                    <a href="/song.html?id=${song.id}" class="goplaysong">
-                        <h3 class="songName">${song.name}</h3>
+                    <a href="/song.html?id=${id}" class="goplaysong">
+                        <h3 class="songName">${name}</h3>
                         <div class="songInfo">
                             <svg class="icon SQ" aria-hidden="true">
                             <use xlink: href="#icon-wusunyinzhi"></use>
@@ -107,8 +126,19 @@ $(function () {
         })
     }
 
-    function loadHotsong(playlist) {
-        
+    function loadHotsong(res) {
+        let {playlist} = res;
+        log(playlist);
+        let list = res.privileges.splice(0,20)
+        let top20 = [];
+        for(let i=0; i<20; i++){
+            playlist.tracks.map((s)=>{
+                if(s.id === list[i].id){
+                    top20.push(s);
+                }
+            })
+        }
+        loadNewsong(top20,$('.bang_list'));
     }
 })
 

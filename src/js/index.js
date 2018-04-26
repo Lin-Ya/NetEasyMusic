@@ -7,24 +7,33 @@ $(function () {
         $('.content').children().eq(index).addClass('active').siblings().removeClass('active')
     })
 
-
-
-
     function log(s) {
         return console.log(s)
     }
     //获取最新音乐
-    $.get('../get/newsong.json').then(function (res) {
+    // $.get('../get/newsong.json').then(function (res) {
+    //     if (res.code === 200) {
+    //         loadNewsong(res.result,$('.remd-songlist')));
+    //     } else {
+    //         alert('网络异常，无法获取数据，请调试网络环境')
+    //     }
+    // })
+    // //获取推荐歌单
+    // $.get('../get/personalized.json').then(function (res) {
+    //     if (res.code === 200) {
+    //         loadPersonlized(res.result);
+    //     } else {
+    //         alert('网络异常，无法获取数据，请调试网络环境')
+    //     }
+    // })
+
+
+    //获取热歌榜
+    $.get('../get/hotsong.json').then(function (res) {
+        
         if (res.code === 200) {
-            loadNewsong(res.result);
-        } else {
-            alert('网络异常，无法获取数据，请调试网络环境')
-        }
-    })
-    //获取推荐歌单
-    $.get('../get/personalized.json').then(function (res) {
-        if (res.code === 200) {
-            loadPersonlized(res.result);
+            log(res)
+            loadHotsong(res.playlist)
         } else {
             alert('网络异常，无法获取数据，请调试网络环境')
         }
@@ -62,10 +71,11 @@ $(function () {
         })
     }
 
-    function loadNewsong(result) {
+    function loadNewsong(result,$target) {
         result.map(function (obj) {
             let song = obj.song;
-            let artists = song.artists;
+            let artists = song.artists||song.ar;
+            let ablum = song.ablum.name || song.al.name;
             let singer = "";
             if (artists.length > 1) {
                 artists.map((s) => {
@@ -84,18 +94,21 @@ $(function () {
                             <svg class="icon SQ" aria-hidden="true">
                             <use xlink: href="#icon-wusunyinzhi"></use>
                             </svg>
-                            <span class="songAutor">${singer} - ${song.album.name}</span>
+                            <span class="songAutor">${singer} - ${ablum}</span>
                         </div>
-                            <svg class="icon playbtn" aria-hidden="true">
-                                <use xlink: href="#icon-play-circled"></use>
-                            </svg >
+                        <svg class="icon playbtn" aria-hidden="true">
+                            <use xlink: href="#icon-play-circled"></use>
+                        </svg >
                     </a >
                 </li >
             `);
-            $li.appendTo('.remd-songlist');
-            $('.remd-songlist .loadingGif').remove();
+            $li.appendTo($target);
+            $('.loadingGif').remove();
         })
     }
 
+    function loadHotsong(playlist) {
+        
+    }
 })
 

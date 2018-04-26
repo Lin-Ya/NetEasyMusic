@@ -1,4 +1,15 @@
 $(function () {
+    //首页tab切换
+    $('.tabs').on('click', 'li', function (e) {
+        let $li = $(e.currentTarget);
+        let index = $li.index();
+        $li.addClass('click').addClass('active').siblings().removeClass('active')
+        $('.content').children().eq(index).addClass('active').siblings().removeClass('active')
+    })
+
+
+
+
     function log(s) {
         return console.log(s)
     }
@@ -50,10 +61,6 @@ $(function () {
             $('.remd-ol .loadingGif').remove();
         })
     }
-
-
-
-
 
     function loadNewsong(result) {
         result.map(function (obj) {

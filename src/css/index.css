@@ -23,6 +23,9 @@ header {
     padding: 0 10px;
     height: 17vw;
     font-size: 4vw;
+    position: fixed;
+    z-index: 1;
+    top: 0;
 }
 
 header .toplogo {
@@ -40,6 +43,11 @@ header .downloadApp {
 
 nav {
     border-bottom: 1px solid #E8E8E8;
+    position: fixed;
+    z-index: 1;
+    top: 17vw;
+    width: 100%;
+    background-color: #fff;
 }
 
 nav ol {
@@ -60,11 +68,11 @@ nav ol li span {
     font-size: 4vw;
 }
 
-nav ol li span.active {
+nav ol li.active {
     color: #D83A36;
 }
 
-nav ol li span.active::after {
+nav ol li.active span::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -73,9 +81,14 @@ nav ol li span.active::after {
     right: -1vw;
 }
 
-.remd {
-    padding-top: 20px;
+.content section {
+    margin-top: 34vw;
+    display: none;
 }
+.content section.active{
+    display: block;
+}
+
 .remd .loadingGif {
     text-align: center;
     width: 100%;
@@ -190,6 +203,7 @@ footer .art {
     padding-bottom: 4vw;
     background: url('../img/footer-background.png')  no-repeat;
     background-size: contain;
+    width: 100%;
 }
 
 footer .art .bottomlogo {

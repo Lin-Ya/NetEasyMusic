@@ -75,6 +75,7 @@ $(function () {
         result.map(function (obj,index) {
             let number = (index+1).toString();
             debugger
+            //todo，根据number添加到歌曲系列中作为排名，如果是插入到首页的话，记得给CSS添加样式为display：none；
             let song,id,artists,album,singer,name;
             if(obj.song){
                 song = obj.song

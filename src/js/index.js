@@ -1,4 +1,8 @@
 $(function () {
+    function log(s) {
+        return console.log(s)
+    }
+
     //首页tab切换
     $('.tabs').on('click', 'li', function (e) {
         let $li = $(e.currentTarget);
@@ -7,9 +11,34 @@ $(function () {
         $('.content').children().eq(index).addClass('active').siblings().removeClass('active')
     })
 
-    function log(s) {
-        return console.log(s)
-    }
+    //搜索页面的功能
+    $('.search input').on('input', function (e) {
+        log($('.search input'))
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // 获取最新音乐
     $.get('../get/newsong.json').then(function (res) {
         if (res.code === 200) {
@@ -27,7 +56,6 @@ $(function () {
         }
     })
 
-
     //获取热歌榜
     $.get('../get/hotsong.json').then(function (res) {
         if (res.code === 200) {
@@ -36,6 +64,8 @@ $(function () {
             alert('网络异常，无法获取数据，请调试网络环境')
         }
     })
+
+
 
     function loadPersonlized(result) {
         let songLists = [];

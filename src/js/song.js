@@ -28,7 +28,9 @@ $(function () {
 
 	//获取歌词
 	$.get('//localhost:4000/lyric?id=' + songId).then(function (obj) {
-		setLrc(obj)
+		let { lyric } = obj.lrc; //等同于let a = obj.a			
+		setLrc(lyric)
+
 	})
 
 	
@@ -72,9 +74,8 @@ $(function () {
 		$('.album-cover').attr('src', songs.al.picUrl)
 		$('.background').css('background-image', `url(${songs.al.picUrl})`)
 	}
-	function setLrc(obj) {
+	function setLrc(lyric) {
 		// console.log(obj)
-		let { lyric } = obj.lrc; //等同于let a = obj.a 
 		let array = lyric.split('\n'); //根据回车分割行政数组。
 		let regex = /^\[(.+)\](.*)$/; //正则，匹配中括号内的时间和中括号后的歌词内容
 

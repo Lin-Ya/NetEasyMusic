@@ -13,7 +13,7 @@ $(function () {
     // 获取最新音乐
     $.get('../get/newsong.json').then(function (res) {
         if (res.code === 200) {
-            // loadNewsong(res.result,$('.remd .remd-songlist'));
+            loadNewsong(res.result,$('.remd .remd-songlist'));
         } else {
             alert('网络异常，无法获取数据，请调试网络环境')
         }

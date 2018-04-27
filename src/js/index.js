@@ -13,7 +13,7 @@ $(function () {
 
     //搜索页面的功能
     $('.search input').on('input', function (e) {
-        log($('.search input'))
+        log($('.search input').val())
     })
 
 

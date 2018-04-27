@@ -380,6 +380,10 @@ footer .art .copyright {
     border-radius: 4vw;
 }
 
+.search .history{
+    display: block;
+}
+
 .search .history ol>li {
     position: relative;
     display: flex;
@@ -404,4 +408,37 @@ footer .art .copyright {
 
 .search .history ol>li svg.delete {
     right: 2vw;
+}
+
+.search .suggest {
+    display: none;
+}
+
+.search.show_suggest .hot_search,
+.search.show_suggest .history {
+    display: none;
+}
+.search.show_suggest .suggest{
+    padding-left: 2.6vw;
+    display: block;
+}
+.search.show_suggest .suggest>p {
+    padding: 3.5vw 0;
+    border-bottom: 1px solid #eee;
+    color: #677EAD;
+    font-size: 4vw;
+}
+.search.show_suggest .suggest_list li{
+    display: flex;
+    align-items: center;
+    padding: 2.8vw 0;
+    margin-left: 6vw;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    font-size: 4vw;
+}
+.search.show_suggest .suggest_list li>svg {
+    position: absolute;
+    left: -6vw;
+    fill: #999;
 }

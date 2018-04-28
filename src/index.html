@@ -161,7 +161,7 @@
 				<a href="#">查看完整榜单</a>
 			</footer>
 		</section>
-		<section class="search active show_result">
+		<section class="search active ">
 			<div class="input">
 				<input type="text" id="search" placeholder="搜索歌曲、歌手、专辑">
 				<svg class="icon sousuo" aria-hidden="true">
@@ -189,7 +189,7 @@
 			</div>
 			<div class="history">
 				<ol>
-					<li>
+					<!-- <li>
 						<svg class="icon history" aria-hidden="true">
 							<use xlink:href="#icon-lishijilu"></use>
 						</svg>
@@ -197,57 +197,67 @@
 						<svg class="icon delete" aria-hidden="true">
 							<use xlink:href="#icon-delete"></use>
 						</svg>
-					</li>
-					<li>
-						<svg class="icon history" aria-hidden="true">
-							<use xlink:href="#icon-lishijilu"></use>
-						</svg>
-						<p>这是搜索历史2</p>
-						<svg class="icon delete" aria-hidden="true">
-							<use xlink:href="#icon-delete"></use>
-						</svg>
-					</li>
+					</li> -->
 				</ol>
 			</div>
 			<div class="suggest">
 				<p class="search_content">搜索“d”</p>
 				<ol class="suggest_list">
-					<li>
+					<!-- <li>
 						<svg class="icon sousuo" aria-hidden="true">
 							<use xlink:href="#icon-sousuo"></use>
 						</svg>
 						<p>搜索提示一</p>
-					</li>
+					</li> -->
 				</ol>
 			</div>
 			<div class="result">
 				<div class="result_multimatch">
-					<p>最佳匹配</p>
-					<div class="match_artist">
+					<!-- <div class="match match_artist">
 						<img src="./img/search-mock/歌手图片.jpg">
 						<div class="info">
-							<h2 class="info_sing_name">
+							<p class="info_sing_name">
 								歌手：Beyond
-							</h2>
+							</p>
 						</div>
 						<svg class="icon arrow" aria-hidden="true">
 							<use xlink:href="#icon-arrow"></use>
 						</svg>
 					</div>
-					<div class="match_mv">
+					<div class="match match_mv">
 						<img src="./img/search-mock/mv.jpg">
 						<div class="info">
-							<h2>
+							<p>
 								MV:海阔天空（Live '96）
-							</h2>
+							</p>
 							<span>Beyond</span>
 						</div>
 						<svg class="icon arrow" aria-hidden="true">
 							<use xlink:href="#icon-arrow"></use>
 						</svg>
-					</div>
+						<svg class="icon playbtn" aria-hidden="true">
+							<use xlink:href="#icon-play-circled"></use>
+						</svg>
+					</div> -->
 				</div>
-				<div class="result_song"></div>
+				<div>
+					<ol class="search_list remd-songlist">
+						<!-- <li>
+							<a href="./song.html" class="goplaysong">
+								<h3 class="songName">歌曲标题1</h3>
+								<div class="songInfo">
+									<svg class="icon SQ" aria-hidden="true">
+										<use xlink:href="#icon-wusunyinzhi"></use>
+									</svg>
+									<span class="songAutor">歌手名1 - 专辑名1</span>
+								</div>
+								<svg class="icon playbtn" aria-hidden="true">
+									<use xlink:href="#icon-play-circled"></use>
+								</svg>
+							</a>
+						</li> -->
+					</ol>
+				</div>
 			</div>
 		</section>
 	</div>

@@ -413,6 +413,9 @@ footer .art .copyright {
 .search .suggest {
     display: none;
 }
+.search svg.close{
+    display: none;
+}
 
 .search.show_suggest .hot_search,
 .search.show_suggest .history {

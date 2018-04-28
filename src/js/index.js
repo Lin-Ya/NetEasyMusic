@@ -18,31 +18,34 @@ $(function () {
     //搜索页面的功能
     $('.search input').on('input', function (e) {
         //拼接搜索建议内容
+        $('.search .input .close').show();
         $('.search').addClass('show_suggest')
-        $('.search .search_content').text('搜索“' + $('.search input').val() + '"')
+        $('.search .search_content').text('搜索"' + $('.search input').val() + '"')
         log($('.search input').val())
         setTimeout(()=>{
             getSuggest($('.search input').val())
         },1500)
+        //当input的值为空的时候，清楚提示
+        while($('.search input').val() === ""){
+            $('section.search').removeClass('show_suggest')
+            break;
+        }
+    })
+    $('.search .input .close').on('click', function () {
+        $('.search input').val('');
+        $('.search').removeClass('show_suggest')
+        $('.search .input .close').hide();
     })
 
 
-
-
-
-
-
-
-
-
-
     function getSuggest(search) {
-        $('.suggest_list').children().remove();
-
         //search是一个字符串
         //正常来说应该是下面这种
         // $.get('//localhost:4000/search/suggest?keywords=' + search)
         //开发环境改为get/search_suggest.json
+        if(search === ""){
+            return;
+        }
         if (!suggesting) {
             suggesting = true;
             setTimeout(() => {
@@ -51,6 +54,7 @@ $(function () {
                     if (res.code === 200) {
                         let match = res.result.allMatch;
                         let length = match.length;
+                        $('.suggest_list').children().remove();                                                    
                         for (let i = 0; i < length; i++) {
                             let content = match[i].keyword;
                             let $li = $(`
@@ -64,8 +68,9 @@ $(function () {
                         }
                     }
                 })
-            }, 1000)
+            }, 1200)
         } else {
+            log(1)
             return;
         }
     }

@@ -1,0 +1,36 @@
+{
+    "result": {
+        "allMatch": [{
+            "keyword": "海阔天空",
+            "type": 1,
+            "alg": "alg_psug_m_r",
+            "lastKeyword": ""
+        }, {
+            "keyword": "光辉岁月",
+            "type": 1,
+            "alg": "alg_psug_m_r",
+            "lastKeyword": "rec"
+        }, {
+            "keyword": "海阔天空 beyond",
+            "type": 1,
+            "alg": "alg_psug_m_r",
+            "lastKeyword": ""
+        }, {
+            "keyword": "海阔天空dj",
+            "type": 1,
+            "alg": "alg_psug_m_r",
+            "lastKeyword": ""
+        }, {
+            "keyword": "海阔天空 Paul Liu 钢琴版",
+            "type": 1,
+            "alg": "alg_psug_m_r",
+            "lastKeyword": ""
+        }, {
+            "keyword": "海阔天空ft.aka林子",
+            "type": 1,
+            "alg": "alg_psug_m_r",
+            "lastKeyword": ""
+        }]
+    },
+    "code": 200
+}

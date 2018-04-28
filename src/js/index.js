@@ -2,7 +2,11 @@ $(function () {
     function log(s) {
         return console.log(s)
     }
+    let suggesting = false;
 
+
+
+    //事件的处理将来需要抽离封装为一个组件
     //首页tab切换
     $('.tabs').on('click', 'li', function (e) {
         let $li = $(e.currentTarget);
@@ -13,10 +17,58 @@ $(function () {
 
     //搜索页面的功能
     $('.search input').on('input', function (e) {
+        //拼接搜索建议内容
+        $('.search').addClass('show_suggest')
+        $('.search .search_content').text('搜索“' + $('.search input').val() + '"')
         log($('.search input').val())
+        setTimeout(()=>{
+            getSuggest($('.search input').val())
+        },1500)
     })
 
 
+
+
+
+
+
+
+
+
+
+    function getSuggest(search) {
+        $('.suggest_list').children().remove();
+
+        //search是一个字符串
+        //正常来说应该是下面这种
+        // $.get('//localhost:4000/search/suggest?keywords=' + search)
+        //开发环境改为get/search_suggest.json
+        if (!suggesting) {
+            suggesting = true;
+            setTimeout(() => {
+                $.get('//localhost:4000/search/suggest?keywords=' + search).then(function (res) {
+                    suggesting = false;
+                    if (res.code === 200) {
+                        let match = res.result.allMatch;
+                        let length = match.length;
+                        for (let i = 0; i < length; i++) {
+                            let content = match[i].keyword;
+                            let $li = $(`
+                            <li>
+                            <svg class="icon sousuo" aria-hidden="true">
+                            <use xlink:href="#icon-sousuo"></use>
+                            </svg>
+                            <p>${content}</p>
+                            </li>`);
+                            $li.appendTo('.suggest_list');
+                        }
+                    }
+                })
+            }, 1000)
+        } else {
+            return;
+        }
+    }
 
 
 
@@ -42,7 +94,7 @@ $(function () {
     // 获取最新音乐
     $.get('../get/newsong.json').then(function (res) {
         if (res.code === 200) {
-            loadNewsong(res.result,$('.remd .remd-songlist'));
+            loadNewsong(res.result, $('.remd .remd-songlist'));
         } else {
             alert('网络异常，无法获取数据，请调试网络环境')
         }
@@ -69,22 +121,22 @@ $(function () {
 
     function loadPersonlized(result) {
         let songLists = [];
-        for(let i=0 ;i<6; i++){
+        for (let i = 0; i < 6; i++) {
             songLists[i] = result[i];
         }
         log(songLists)
-        songLists.map((list)=>{
+        songLists.map((list) => {
             let count = '';
-            count = Math.ceil((list.playCount/10000).toFixed(2));
+            count = Math.ceil((list.playCount / 10000).toFixed(2));
             let danwei = '';
-        
-            if (count.toString().length>5){
+
+            if (count.toString().length > 5) {
                 count = (count / 10000).toFixed(1);
                 danwei = '亿'
-            }else {
+            } else {
                 danwei = '万'
             }
-            
+
             let $li = $(`
                 <li>
                     <a href="?id="${list.id}">
@@ -99,23 +151,23 @@ $(function () {
         })
     }
 
-    function loadNewsong(result,$target) {
+    function loadNewsong(result, $target) {
         log('================')
         log(result)
-        result.map(function (obj,index) {
-            let number = (index+1).toString();
-            if(number.length ===1){
-                number = '0'+ number;
+        result.map(function (obj, index) {
+            let number = (index + 1).toString();
+            if (number.length === 1) {
+                number = '0' + number;
             }
-            let song,id,artists,album,singer,name;
-            if(obj.song){
+            let song, id, artists, album, singer, name;
+            if (obj.song) {
                 song = obj.song
                 id = song.id
                 artists = song.artists
                 album = song.album.name
                 singer = "";
                 name = song.name
-            }else {
+            } else {
                 id = obj.id;
                 artists = obj.ar;
                 album = obj.al.name;
@@ -150,7 +202,7 @@ $(function () {
                     </a>
                 </li >
             `);
-            if(Number(number)<4){
+            if (Number(number) < 4) {
                 $li.find('.index').css('color', '#D83A36')
             }
             $li.appendTo($target);
@@ -159,18 +211,18 @@ $(function () {
     }
 
     function loadHotsong(res) {
-        let {playlist} = res;
+        let { playlist } = res;
         log(playlist);
-        let list = res.privileges.splice(0,20)
+        let list = res.privileges.splice(0, 20)
         let top20 = [];
-        for(let i=0; i<20; i++){
-            playlist.tracks.map((s)=>{
-                if(s.id === list[i].id){
+        for (let i = 0; i < 20; i++) {
+            playlist.tracks.map((s) => {
+                if (s.id === list[i].id) {
                     top20.push(s);
                 }
             })
         }
-        loadNewsong(top20,$('.bang_list'));
+        loadNewsong(top20, $('.bang_list'));
     }
 })
 

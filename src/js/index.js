@@ -4,8 +4,6 @@ $(function () {
     }
     let suggesting = false;
 
-
-
     //事件的处理将来需要抽离封装为一个组件
     //首页tab切换
     $('.tabs').on('click', 'li', function (e) {
@@ -18,7 +16,7 @@ $(function () {
     //搜索页面的功能
     $('.search input').on('input', function (e) {
         //拼接搜索建议内容
-        $('.search .input .close').show();
+        $('.search .input .close').show();        
         $('.search').addClass('show_suggest')
         $('.search .search_content').text('搜索"' + $('.search input').val() + '"')
         log($('.search input').val())
@@ -34,7 +32,6 @@ $(function () {
 
     $('.search .input .close').on('click', function () {
         $('.search input').val('');
-        $('.search .input .close').hide();
         resetSearch();
     })
 
@@ -45,7 +42,6 @@ $(function () {
     $('.search .suggest>p').on('click', function () {
         getSearch($('.search input').val())
     });
-    //待补充一个，就是当点击提示列表中的任意一个提示内容的时候，自动补全并搜索
     $('.search .input .sousuo').on('click', function () {
         getSearch($('.search input').val())
     })
@@ -54,15 +50,20 @@ $(function () {
             getSearch($('.search input').val())
         }
     })
+    //待补充一个，就是当点击提示列表中的任意一个提示内容的时候，自动补全并搜索
+    $('.hot_search .tag_content').on('click','span',function (e) {
+        let tag = $(e.currentTarget).text();
+        $('.search .input .close').show();        
+        $('.search input').val(tag);
+        getSearch(tag);
+    })
 
     function resetSearch() {
+        $('.search .input .close').hide();        
         $('section.search').removeClass('show_suggest').removeClass('show_result');
         $('.search_list').children().remove();
         $('.result_multimatch').children().remove();
     }
-
-
-
 
     function getSuggest(keyword) {
         //search是一个字符串
@@ -206,25 +207,6 @@ $(function () {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // 获取最新音乐
     $.get('../get/newsong.json').then(function (res) {
         if (res.code === 200) {
@@ -250,8 +232,6 @@ $(function () {
             alert('网络异常，无法获取数据，请调试网络环境')
         }
     })
-
-
 
     function loadPersonlized(result) {
         let songLists = [];

@@ -1,0 +1,75 @@
+{
+    "result": {
+        "artist": [
+            {
+                "name": "Beyond",
+                "id": 11127,
+                "picId": 18799449813673937,
+                "img1v1Id": 80264348845616,
+                "briefDesc": "",
+                "picUrl": "http://p1.music.126.net/3ce4Qx3wCrNVREtCcuskUA==/18799449813673937.jpg",
+                "img1v1Url": "http://p1.music.126.net/wuaNikQW2tPPFN0Oe5Rk9w==/80264348845616.jpg",
+                "albumSize": 112,
+                "alias": [],
+                "trans": "",
+                "musicSize": 2097,
+                "picId_str": "18799449813673937",
+                "mvSize": 192,
+                "alg": "default"
+            }
+        ],
+        "mv": [
+            {
+                "id": 5436067,
+                "cover": "http://p4.music.126.net/QTBqa8Ct4b7ALD0UgnrZYw==/18824738580865287.jpg",
+                "name": "海阔天空(Live '96)",
+                "playCount": 356613,
+                "briefDesc": null,
+                "desc": null,
+                "artistName": "Beyond",
+                "artistId": 11127,
+                "duration": 415000,
+                "mark": 0,
+                "artists": [
+                    {
+                        "id": 11127,
+                        "name": "Beyond",
+                        "alias": [
+                            "黄家驹",
+                            "黄家强",
+                            "黄贯中",
+                            "叶世荣",
+                            "Beyond乐队"
+                        ],
+                        "transNames": null
+                    }
+                ],
+                "alg": "default"
+            }
+        ],
+        "orders": [
+            "artist",
+            "mv",
+            "video"
+        ],
+        "video": [
+            {
+                "coverUrl": "http://p1.music.126.net/QTBqa8Ct4b7ALD0UgnrZYw==/18824738580865287.jpg",
+                "title": "海阔天空(Live '96)",
+                "durationms": 415000,
+                "type": 0,
+                "creator": [
+                    {
+                        "userId": 11127,
+                        "userName": "Beyond"
+                    }
+                ],
+                "aliaName": null,
+                "transName": null,
+                "vid": "5436067",
+                "playTime": 356613
+            }
+        ]
+    },
+    "code": 200
+}

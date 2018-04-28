@@ -445,3 +445,21 @@ footer .art .copyright {
     left: -6vw;
     fill: #999;
 }
+
+.search.show_result .hot_search,
+.search.show_result .history {
+    display: none;
+}
+.search.show_result .result {
+    display: block;
+}
+
+.search .result {
+    display: none;
+    padding: 3vw;
+    border: 1px solid red;
+}
+
+.search .result {
+    
+}

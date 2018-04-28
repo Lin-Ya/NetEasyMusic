@@ -23,7 +23,7 @@ $(function () {
         $('.search .search_content').text('搜索"' + $('.search input').val() + '"')
         log($('.search input').val())
         setTimeout(()=>{
-            getSuggest($('.search input').val())
+            // getSuggest($('.search input').val())
         },1500)
         //当input的值为空的时候，清楚提示
         while($('.search input').val() === ""){
@@ -36,6 +36,17 @@ $(function () {
         $('.search').removeClass('show_suggest')
         $('.search .input .close').hide();
     })
+    $('.search .history svg.delete').on('click', function (e) {
+        e.stopPropagation()
+        $(e.currentTarget).parent().remove()
+    });
+    $('.search .suggest>p').on('click', function (e) {
+        
+    })
+
+
+
+
 
 
     function getSuggest(search) {

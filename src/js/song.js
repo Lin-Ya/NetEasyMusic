@@ -20,17 +20,20 @@ $(function () {
 	let getsong = $.get('//localhost:4000/music/url?id=' + songId).then(function (res) {
 		if(res.code != 200){
 			alert('网络异常，无法获取歌曲，请检查网络')
-		}else {
+		}
+		else {
 			let song = res.data[0]
 			playmusic(song)
 		}
-	})
-
+		})
+		
 	//获取歌词
-	$.get('//localhost:4000/lyric?id=' + songId).then(function (obj) {
+	$.get('//localhost:4000/lyric?id=' + songId).then(function (res) {
+		if(res.code !== 200){
+			alert('无法获取歌词，请检查当前网络环境')
+		}
 		let { lyric } = obj.lrc; //等同于let a = obj.a			
 		setLrc(lyric)
-
 	})
 
 	

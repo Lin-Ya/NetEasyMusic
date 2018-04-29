@@ -1,0 +1,57 @@
+{
+    "code": 200,
+    "result": {
+        "hots": [
+            {
+            "first": "王嘉尔",
+            "second": 1,
+            "third": null,
+            "iconType": 0
+        }, {
+            "first": "李志",
+            "second": 1,
+            "third": null,
+            "iconType": 0
+        }, {
+            "first": "没有理由",
+            "second": 1,
+            "third": null,
+            "iconType": 0
+        }, {
+            "first": "我们",
+            "second": 1,
+            "third": null,
+            "iconType": 0
+        }, {
+            "first": "渺小却伟大",
+            "second": 1,
+            "third": null,
+            "iconType": 0
+        }, {
+            "first": "谢春花",
+            "second": 1,
+            "third": null,
+            "iconType": 0
+        }, {
+            "first": "炎亚纶",
+            "second": 1,
+            "third": null,
+            "iconType": 0
+        }, {
+            "first": "偶像练习生",
+            "second": 1,
+            "third": null,
+            "iconType": 0
+        }, {
+            "first": "慢慢喜欢你",
+            "second": 1,
+            "third": null,
+            "iconType": 0
+        }, {
+            "first": "林宥嘉",
+            "second": 1,
+            "third": null,
+            "iconType": 0
+        }]
+    }
+}

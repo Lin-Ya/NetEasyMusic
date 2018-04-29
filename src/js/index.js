@@ -18,10 +18,10 @@ $(function () {
         //拼接搜索建议内容
         $('.search .input .close').show();        
         $('.search').addClass('show_suggest')
-        $('.search .search_content').text('搜索"' + $('.search input').val() + '"')
+        $('.search .search_content span').text($('.search input').val())
         log($('.search input').val())
         setTimeout(() => {
-            // getSuggest($('.search input').val())
+            getSuggest($('.search input').val())
         }, 1500)
         //当input的值为空的时候，清楚提示
         while ($('.search input').val() === "") {
@@ -29,15 +29,42 @@ $(function () {
             break;
         }
     })
-
+    $('.search input').change(function (e) {
+        $('.search .input .close').show();
+        $('.search').addClass('show_suggest')
+    })
+    $('.search input').focus(function () {
+        $('.search .search_content span').text($('.search input').val())
+        $('.search').removeClass('show_result').addClass('show_suggest')
+        setTimeout(() => {
+            getSuggest($('.search input').val())
+        }, 1500)
+    })
+    $('.search input').on('keypress', function (e) {
+        if (e.keyCode === 13) {
+            getSearch($('.search input').val())
+        } else {
+            setTimeout(() => {
+                getSuggest($('.search input').val())
+            }, 1500)
+        }
+    })
     $('.search .input .close').on('click', function () {
         $('.search input').val('');
         resetSearch();
     })
 
-    $('.search .history svg.delete').on('click', function (e) {
+    $('.search .history').on('click', 'svg',function (e) {
         e.stopPropagation()
-        $(e.currentTarget).parent().remove()
+        if($(e.currentTarget).hasClass('delete')){
+            $(e.currentTarget).parent().remove()
+        }
+    });
+    $('.search .history').on('click', 'li', function (e) {
+        e.stopPropagation()
+        let keyword = $(e.currentTarget).children('p').text()
+        $('.search input').val(keyword).trigger('change')
+        getSearch(keyword)
     });
     $('.search .suggest>p').on('click', function () {
         getSearch($('.search input').val())
@@ -45,11 +72,7 @@ $(function () {
     $('.search .input .sousuo').on('click', function () {
         getSearch($('.search input').val())
     })
-    $('.search input').on('keypress', function (e) {
-        if (e.keyCode === 13) {
-            getSearch($('.search input').val())
-        }
-    })
+    
     //待补充一个，就是当点击提示列表中的任意一个提示内容的时候，自动补全并搜索
     $('.hot_search .tag_content').on('click','span',function (e) {
         let tag = $(e.currentTarget).text();
@@ -57,7 +80,12 @@ $(function () {
         $('.search input').val(tag);
         getSearch(tag);
     })
-
+    $('.suggest_list').on('click','li',function (e) {
+        e.stopPropagation()        
+        let keyword = $(e.currentTarget).children('p').text()
+        $('.search input').val(keyword)
+        getSearch(keyword)
+    })
     function resetSearch() {
         $('.search .input .close').hide();        
         $('section.search').removeClass('show_suggest').removeClass('show_result');
@@ -79,6 +107,9 @@ $(function () {
                 $.get('//localhost:4000/search/suggest?keywords=' + keyword).then(function (res) {
                     suggesting = false;
                     if (res.code === 200) {
+                        if(!res.result){
+                            return;
+                        }
                         let match = res.result.allMatch;
                         let length = match.length;
                         $('.suggest_list').children().remove();
@@ -95,9 +126,8 @@ $(function () {
                         }
                     }
                 })
-            }, 1200)
+            }, 1100)
         } else {
-            log(1)
             return;
         }
     }
@@ -223,7 +253,6 @@ $(function () {
             alert('网络异常，无法获取数据，请调试网络环境')
         }
     })
-
     //获取热歌榜
     $.get('../get/hotsong.json').then(function (res) {
         if (res.code === 200) {
@@ -231,6 +260,19 @@ $(function () {
         } else {
             alert('网络异常，无法获取数据，请调试网络环境')
         }
+    })
+    //获取热门搜索
+    $.get('../get/search_hot.json').then(function (res) {
+        if(res.code !== 200){
+            alert('网络异常，无法获取热门搜索数据，请检查当前网络环境')
+            return;
+        }
+        let {hots}=res.result;
+        let length = hots.length;
+        for(let i=0; i<length; i++){
+            let $tag = $(`<span>${hots[i].first}</span>`)
+            $tag.appendTo($('.tag_content'))
+        } 
     })
 
     function loadPersonlized(result) {
@@ -266,8 +308,6 @@ $(function () {
     }
 
     function loadNewsong(songArray, $target) {
-        log('================')
-        log(songArray)
         songArray.map(function (obj, index) {
             let number = (index + 1).toString();
             if (number.length === 1) {

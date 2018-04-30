@@ -1,7 +1,4 @@
 $(function () {
-    function log(s) {
-        return console.log(s)
-    }
     let suggesting = false;
 
     //事件的处理将来需要抽离封装为一个组件
@@ -19,7 +16,6 @@ $(function () {
         $('.search .input .close').show();        
         $('.search').addClass('show_suggest')
         $('.search .search_content span').text($('.search input').val())
-        log($('.search input').val())
         setTimeout(() => {
             getSuggest($('.search input').val())
         }, 1500)
@@ -280,7 +276,6 @@ $(function () {
         for (let i = 0; i < 6; i++) {
             songLists[i] = result[i];
         }
-        log(songLists)
         songLists.map((list) => {
             let count = '';
             count = Math.ceil((list.playCount / 10000).toFixed(2));
@@ -368,7 +363,6 @@ $(function () {
         let {
             playlist
         } = res;
-        log(playlist);
         let list = res.privileges.splice(0, 20)
         let top20 = [];
         for (let i = 0; i < 20; i++) {

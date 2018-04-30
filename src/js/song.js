@@ -1,7 +1,4 @@
 $(function () {
-	function log(s) {
-		return console.log(s)
-	}
 	let songId = parseInt(location.search.match(/\bid=([^&]*)/)[1])
 	let audio = document.createElement('audio')
 	audio.loop = true;
@@ -28,7 +25,6 @@ $(function () {
 
 	//获取歌词
 	$.get('//localhost:4000/lyric?id=' + songId).then(function (res) {
-		log(res)
 		if (res.code !== 200) {
 			alert('无法获取歌词，请检查当前网络环境')
 		} else if (res.nolyric) {
@@ -66,7 +62,6 @@ $(function () {
 	}
 
 	function setInfo(songs) {
-		log(songs)
 		let name = songs.name;
 		let singer = "";
 		if (songs.ar.length > 1) {
@@ -125,7 +120,6 @@ $(function () {
 				}else if($whitchLines.attr('data-time') < currentTime && $nextLines.attr('data-time')>currentTime){
 					$whitchLines.addClass('active').siblings().removeClass('active')
 					let gap = $whitchLines.offset().top - $('.lines').offset().top ;
-					log('gap ='+ gap)
 					//因为歌词显示区域的高度是显示五行歌词，那么中间的高度就是总高度的五分之三
 					let middle = $('.lyric').height() / 5 * 2
 					$('.lines').css('transform',`translateY(-${gap-middle}px)`)

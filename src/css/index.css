@@ -214,6 +214,10 @@ footer .art {
     background: url('../img/footer-background.png')  no-repeat;
     background-size: contain;
     width: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 footer .art .bottomlogo {

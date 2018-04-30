@@ -120,8 +120,7 @@ $(function () {
 				let $whitchLines = $lrcArray.eq(i);
 				let $nextLines = $lrcArray.eq(i+1);
 				//当没有下一段歌词的时候，意味歌曲播放到最后，return。
-				if($nextLines.length === 0){
-					$('.lines').css('transform', `translateY(0px)`)					
+				if($nextLines.length === 0){			
 					return;
 				}else if($whitchLines.attr('data-time') < currentTime && $nextLines.attr('data-time')>currentTime){
 					$whitchLines.addClass('active').siblings().removeClass('active')
@@ -135,7 +134,7 @@ $(function () {
 		},300)
 		
 	}
-	
+
 	function padTime(number) {
 		return number>10?number+'':'0'+number
 	}

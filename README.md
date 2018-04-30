@@ -70,12 +70,62 @@ style: ocean
 ```js
 location.search.match(/\bid=([^&]*)/)[1]
 ```
+### 热歌榜
+其实热歌榜的难度不大，里面的歌曲载入可以服用前面首页的loadmusic，所以就略过吧。
+
+### 搜索
+1. 需要对api进行修改，把搜索建议的目标地址改一下，改为suggest/keyword  如果响应里面的`code===200`，说明成功了。
+![效果](https://ws2.sinaimg.cn/large/006tKfTcgy1fqs4ewmiy5g306s0bn4qw.gif)
+2. 搜索提示可点击、热搜tag可点击。
+
+### 歌词滚动
+1. 首先要获取当前歌曲的进度时间：`audio.currentTime`得到的是当前播放进度的秒数（注意，需要设置定时每隔500毫秒获取一次）
+2. 转换为正常的时间显示`01:25`，实质是把分钟数和秒数拼接一起，需要解决的就是数字的取整，判断是否需要加`0`。
+```js
+setInterval(()=>{
+	let  nowScends  =  audio.currentTime;
+	let  minutes  =  ~~(nowScends/60)
+	let  scends  =  ~~(nowScends%60)
+	let  currentTime  = `${padTime(minutes)}:${padTime(scends)}`;
+ },300)
+function  padTime(number)  {
+      return  number>10?number+'':'0'+number
+    }
+```
+3. 实现歌词滚动的代码：
+```js
+let  $lrcArray  =  $('.lyric .lines>p'); //这里取的是每一段歌词的集合。
+let  lrcLength  =  $lrcArray.length;
+for(let  i=0;  i<lrcLength;  i++){
+	let  $whitchLines  =  $lrcArray.eq(i);	//指应当显示的歌词行
+	let  $nextLines  =  $lrcArray.eq(i+1);	//指接下来要显示的歌词行
+	
+	//当没有下一段歌词的时候，意味歌曲播放到最后，return。
+	if($nextLines.length  ===  0){            
+		return;
+	}else if($whitchLines.attr('data-time')  <  currentTime  &&  $nextLines.attr('data-time')>currentTime){
+		//遍历所有歌词，针对其属性`data-time`与当前的`currentTime`进行比较，如果当前时间比`i`的`data-time`大，比`i+1`的小，说明此时歌词应该是在`i`与`i+1`之间，应该显示$whitchLines的内容。
+		$whitchLines.addClass('active').siblings().removeClass('active')
+		let  gap  =  $whitchLines.offset().top  -  $('.lines').offset().top  ;
+		log('gap ='+  gap)
+		//因为歌词显示区域的高度是显示五行歌词，那么中间的高度就是总高度的五分之三
+		let  middle  =  $('.lyric').height()  /  5  *  2
+		$('.lines').css('transform',`translateY(-${gap-middle}px)`)
+	}
+}
+```
+
 
 ## 难点记录与解决历程
-- 歌词部分：
-	`1. 需要会用正则来对字符串进行分割。`
+	1. `处理歌词data,需要会用正则来对字符串进行分割。`
 	解决：可以利用在线正则网站好好设计一遍你的正则表达式。
-	`2. 对播放动画进行设计，实现播放暂停的时候唱片旋转角度不会归零。`
+	2. `对播放动画进行设计，实现播放暂停的时候唱片旋转角度不会归零。`
 解决：使用 `animation-play-state: paused `
-	`3. mock数据会很繁琐。`
+	3. `mock数据会很繁琐。`
 解决：七牛存储
+	4. `搜索框提示`和`搜索显示内容的节流`
+	5. `歌词滚动`
+解决：要想好好歌词显示的逻辑：
+	- 确定歌曲时间戳（`audio.currentTime`）
+	- 根据时间戳匹配歌词(遍历歌词节点，根据歌词节点的`data-time`属性与时间戳进行比较，当时间戳位于两行歌词的`data-time`之间，高亮上一条歌词)
+	- 滚动歌词（`transform:translateY`）

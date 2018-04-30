@@ -115,9 +115,11 @@
 }
 
 .song-description .lyric .lines {
-	transform: translateY(-0px);
+	/* transform: translateY(-0px); */
 }
-
+.song-description .lyric .lines {
+	transition: all 0.3s;
+}
 .song-description .lyric p {
 	line-height: 24px;
 }

@@ -45,12 +45,13 @@
 	z-index: -1;
 }
 
-.page.playing .disc .circle-light,
-.page.playing .disc .album-cover {
+/* .page.playing .disc .circle-light, */
+.page.playing .disc {
 	animation: circle 20s infinite linear;
 }
-.page.paused .disc .circle-light,
-.page.paused .disc .album-cover {
+
+/* .page.paused .disc .circle-light, */
+.page.paused .disc {
 	animation: circle 20s infinite linear;
 	animation-play-state: paused;
 }
@@ -64,6 +65,9 @@
 	position: absolute;
 	width: 18vw;
 	z-index: 1;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .page.page.playing .disc-container .play-btn {
@@ -83,6 +87,7 @@
 	align-items: center;
 	justify-content: center;
 	margin-top: 17vw;
+	position: relative;
 }
 
 .disc-container .circle {
@@ -92,12 +97,18 @@
 .disc-container .circle-light {
 	width: 72vw;
 	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .disc-container .album-cover {
 	width: 45vw;
 	position: absolute;
 	border-radius: 50%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
 }
 
 .song-description {

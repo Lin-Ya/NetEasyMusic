@@ -16,7 +16,7 @@
 		transform: rotate(0deg);
 	}
 	100% {
-		transform: rotate(1turn);
+		transform: rotate(360deg);
 	}
 }
 
@@ -25,8 +25,9 @@
 	flex-direction: column;
 	height: 100vh;
 	background: rgba(0, 0, 0, 0.5);
+	width: 100vw;
+	overflow: hidden;
 }
-
 
 .background {
 	background-image: url("../img/disc_default.png");
@@ -45,71 +46,73 @@
 	z-index: -1;
 }
 
-/* .page.playing .disc .circle-light, */
-.page.playing .disc {
-	animation: circle 20s infinite linear;
-}
-
-/* .page.paused .disc .circle-light, */
-.page.paused .disc {
-	animation: circle 20s infinite linear;
-	animation-play-state: paused;
-}
-
-
 .disc-container {
 	position: relative;
 }
 
-.page.page .disc-container .play-btn {
+.pointer {
 	position: absolute;
-	width: 18vw;
-	z-index: 1;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	width: 24vw;
+	left: 45%;
+	z-index: 2;
 }
 
-.page.page.playing .disc-container .play-btn {
+.disc {
+	margin-top: 17vw;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.disc .play-btn {
+	width: 20vw;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+}
+
+.page.playing .play-btn {
 	display: none;
 }
 
-.disc-container .pointer {
-	width: 24vw;
-	position: absolute;
-	left: 45vw;
-	z-index: 1;
+.disc .circle {
+	width: 72vw;
 }
 
-.disc-container .disc {
+.disc .disc-route {
+	position: absolute;
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	margin-top: 17vw;
-	position: relative;
+	width: 100%;
+	left: 0;
+	top: 0;
+	animation: circle 20s infinite linear;
 }
-
-.disc-container .circle {
+.disc .circle-light {
 	width: 72vw;
 }
 
-.disc-container .circle-light {
-	width: 72vw;
+.disc .album-cover {
+	width: 45vw;
+	border-radius: 50%;
 	position: absolute;
-	top: 50%;
 	left: 50%;
+	top: 50%;
 	transform: translate(-50%, -50%);
 }
-
-.disc-container .album-cover {
-	width: 45vw;
-	position: absolute;
-	border-radius: 50%;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
+.playing .disc .disc-route {
+	animation-play-state: running;
 }
+
+.paused .disc .disc-route {
+	animation-play-state: paused;
+}
+
+
 
 .song-description {
 	text-align: center;
@@ -128,6 +131,7 @@
 .song-description .lyric .lines {
 	transition: all 0.3s;
 }
+
 .song-description .lyric p {
 	line-height: 24px;
 }

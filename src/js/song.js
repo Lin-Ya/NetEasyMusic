@@ -46,6 +46,8 @@ $(function () {
 			audio.play();
 			$('.page').addClass('playing')
 		}
+		audio.autoplay = true
+		
 		//播放暂停按钮
 		$('.disc').on('click', function () {
 			console.log('暂停了')

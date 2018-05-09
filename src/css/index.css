@@ -513,3 +513,15 @@ footer .art .copyright {
 .search.show_result .history {
     display: none;
 }
+
+.toast {
+    position: fixed;
+    bottom: 15vh;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ccc;
+    color: black;
+    border-radius: 10px;
+    font-size: 2.5vw;
+    padding: 2vw 4vw;
+}

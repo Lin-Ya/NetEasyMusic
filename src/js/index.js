@@ -82,6 +82,14 @@ $(function () {
         $('.search input').val(keyword)
         getSearch(keyword)
     })
+    $('body').on('click', function (e) {
+        if($(e.target).hasClass('holder') || $(e.target).parents().hasClass('holder')){
+            Toast('功能尚未发布，敬请期待',2000)
+        }
+    })
+
+
+
     function resetSearch() {
         $('.search .input .close').hide();        
         $('section.search').removeClass('show_suggest').removeClass('show_result');
@@ -150,7 +158,7 @@ $(function () {
             $p.appendTo('.result_multimatch')
             if (artist) {
                 let $artistNode = $(`
-                    <div class="match match_artist" data_id="${artist[0].id}" id="error">
+                    <div class="holder match match_artist" data_id="${artist[0].id}" id="error">
                         <img src="${artist[0].img1v1Url || artists[0].picUrl}">
                         <div class="info">
                             <p class="info_sing_name">
@@ -166,7 +174,7 @@ $(function () {
             }
             if (mv) {
                 let $mvNode = $(`
-                    <div class="match match_mv" data_id="${mv[0].id}" id="error">
+                    <div class="holder match match_mv" data_id="${mv[0].id}" id="error">
                         <img src="${mv[0].cover}">
                             <div class="info">
                                 <p>
@@ -198,7 +206,7 @@ $(function () {
                 singer = songs[i].artists[0].name;
                 let $li = $(`
                     <li>
-                        <a href="/src/song.html?id=${id}" class="goplaysong">
+                        <a href="/song.html?id=${id}" class="goplaysong">
                             <div class="song">
                                 <h3 class="songName">${name}</h3>
                                 <div class="songInfo">
@@ -289,8 +297,8 @@ $(function () {
             }
 
             let $li = $(`
-                <li>
-                    <a href="?id="${list.id}">
+                <li class="holder">
+                    <a>
                         <img src="${list.picUrl}" class="songlistCove">
                             <p class="songlistName">${list.name}</p>
                         <div class="colletCount">${count}${danwei}</div>
@@ -334,7 +342,7 @@ $(function () {
             }
             let $li = $(`
                 <li>
-                    <a href="/src/song.html?id=${id}" class="goplaysong">
+                    <a href="/song.html?id=${id}" class="goplaysong">
                         <div class="index">${number}</div>
 						<div class="song">
                             <h3 class="songName">${name}</h3>

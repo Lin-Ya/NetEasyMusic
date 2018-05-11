@@ -108,7 +108,7 @@ $(function () {
         if (!suggesting) {
             suggesting = true;
             setTimeout(() => {
-                $.get('//api.fengxiaoyong.work:3000/search/suggest?keywords=' + keyword).then(function (res) {
+                $.get('//47.91.156.35:3332/search/suggest?keywords=' + keyword).then(function (res) {
                     suggesting = false;
                     if (res.code === 200) {
                         if(!res.result){
@@ -142,7 +142,7 @@ $(function () {
         if (!keyword) {
             return;
         }
-        $.get('//api.fengxiaoyong.work:3000/search/multimatch?keywords='+keyword).then(function (res) {
+        $.get('//47.91.156.35:3332/search/multimatch?keywords='+keyword).then(function (res) {
             //
             if (res.code !== 200) {
                 alert('无法连接服务器，请检查当前网络环境')
@@ -192,7 +192,7 @@ $(function () {
                 $mvNode.appendTo('.result_multimatch')
             }
         })
-        $.get('//api.fengxiaoyong.work:3000/search?keywords='+keyword).then(function (res) {
+        $.get('//47.91.156.35:3332/search?keywords='+keyword).then(function (res) {
             if (res.code !== 200) {
                 alert('无法连接服务器，请检查当前网络环境')
                 return;
@@ -242,7 +242,7 @@ $(function () {
 
 
     // 获取最新音乐
-    $.get('//api.fengxiaoyong.work:3000/personalized/newsong').then(function (res) {
+    $.get('//47.91.156.35:3332/personalized/newsong').then(function (res) {
         if (res.code === 200) {
             loadNewsong(res.result, $('.remd .remd-songlist'));
         } else {
@@ -250,7 +250,7 @@ $(function () {
         }
     })
     //获取推荐歌单
-    $.get('//api.fengxiaoyong.work:3000/personalized').then(function (res) {
+    $.get('//47.91.156.35:3332/personalized').then(function (res) {
         if (res.code === 200) {
             loadPersonlized(res.result);
         } else {
@@ -258,7 +258,7 @@ $(function () {
         }
     })
     //获取热歌榜
-    $.get('//api.fengxiaoyong.work:3000/top/list?idx=1').then(function (res) {
+    $.get('//47.91.156.35:3332/top/list?idx=1').then(function (res) {
         if (res.code === 200) {
             loadHotsong(res)
         } else {
@@ -266,7 +266,7 @@ $(function () {
         }
     })
     //获取热门搜索
-    $.get('//api.fengxiaoyong.work:3000/search/hot').then(function (res) {
+    $.get('//47.91.156.35:3332/search/hot').then(function (res) {
         if(res.code !== 200){
             alert('网络异常，无法获取热门搜索数据，请检查当前网络环境')
             return;

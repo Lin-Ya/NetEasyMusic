@@ -206,7 +206,7 @@ $(function () {
                 singer = songs[i].artists[0].name;
                 let $li = $(`
                     <li>
-                        <a href="/song.html?id=${id}" class="goplaysong">
+                        <a href="/src/song.html?id=${id}" class="goplaysong">
                             <div class="song">
                                 <h3 class="songName">${name}</h3>
                                 <div class="songInfo">
@@ -342,7 +342,7 @@ $(function () {
             }
             let $li = $(`
                 <li>
-                    <a href="/song.html?id=${id}" class="goplaysong">
+                    <a href="/src/song.html?id=${id}" class="goplaysong">
                         <div class="index">${number}</div>
 						<div class="song">
                             <h3 class="songName">${name}</h3>

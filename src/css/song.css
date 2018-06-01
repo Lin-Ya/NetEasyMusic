@@ -55,6 +55,12 @@
 	width: 24vw;
 	left: 45%;
 	z-index: 2;
+	transition: all .3s;
+	transform-origin: top left;
+}
+.paused .pointer {
+	transition: all .3s;
+	transform: rotate(-25deg);
 }
 
 .disc {

@@ -15,14 +15,15 @@ $(function () {
 
 	//发送请求获取歌曲，并播放歌曲
 	let getsong = $.get('//123.207.63.106:3000/music/url?id=' + songId).then(function (res) {
-		if (res.code != 200) {
-			alert('网络异常，无法获取歌曲，请检查网络')
-		} else {
-			let song = res.data[0]
-			playmusic(song)
-		}
+		// if (res.code != 200) {
+		// 	alert('网络异常，无法获取歌曲，请检查网络')
+		// } else {
+		// 	let song = res.data[0]
+		// 	playmusic(song)
+		// }
+		playmusic()
 	})
-
+	
 	//获取歌词
 	$.get('//123.207.63.106:3000/lyric?id=' + songId).then(function (res) {
 		if (res.code !== 200) {
@@ -38,9 +39,10 @@ $(function () {
 		}
 	})
 
-	function playmusic(music_data) {
-		let url = music_data.url
-		let id = music_data.id
+	function playmusic() {
+		// let url = music_data.url
+		// let id = music_data.id
+		let url = `http://music.163.com/song/media/outer/url?id=${songId}.mp3`
 		audio.src = url;
 		audio.oncanplay = function () {
 			audio.play();

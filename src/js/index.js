@@ -114,11 +114,11 @@ $(function () {
                         if(!res.result){
                             return;
                         }
-                        let match = res.result.allMatch;
+                        let match = res.result.songs;
                         let length = match.length;
                         $('.suggest_list').children().remove();
                         for (let i = 0; i < length; i++) {
-                            let content = match[i].keyword;
+                            let content = match[i].name;
                             let $li = $(`
                             <li>
                             <svg class="icon sousuo" aria-hidden="true">

@@ -49,6 +49,11 @@ $(function () {
 			audio.play();
 			$('.page').addClass('playing')
 		}
+		//适配移动端不能自动播放的限制
+		$('html').one('touchstart',function () {
+			audio.play();
+			$('.page').addClass('playing')
+		})
 		
 		//播放暂停按钮
 		$('.disc').on('click', function () {

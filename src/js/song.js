@@ -44,11 +44,11 @@ $(function () {
 		// let id = music_data.id
 		let url = `http://music.163.com/song/media/outer/url?id=${songId}.mp3`
 		audio.src = url;
+		audio.autoplay = true
 		audio.oncanplay = function () {
 			audio.play();
 			$('.page').addClass('playing')
 		}
-		audio.autoplay = true
 		
 		//播放暂停按钮
 		$('.disc').on('click', function () {
